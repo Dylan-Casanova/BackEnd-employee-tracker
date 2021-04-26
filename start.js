@@ -34,7 +34,7 @@ const searchRun = () => {
                 'view departments',
                 'add employees',
                 'add roles',
-                'add departments',
+                'add department',
                 'update employee role',
                 'Exit',
             ],
@@ -59,6 +59,14 @@ const searchRun = () => {
 
                 case 'add roles':
                     addRole();
+                    break;
+
+                case 'add department':
+                    addDept();
+                    break;
+
+                case 'update employee role':
+                    updateEmployee();
                     break;
 
                 default:
@@ -101,6 +109,8 @@ const deptSearch = () => {
 //function to add employee to table
 const addEmployee = () => {
     console.log('Making room for new employee...\n');
+    console.log('Before adding a new employee, please make sure that the department and role the new employee will belog to exist.')
+    console.log('If not, please add department and role before adding employee')
     inquirer.prompt([{
         name: 'id',
         type: 'input',
@@ -146,3 +156,98 @@ const addEmployee = () => {
             )
         })
 };
+
+const addRole = () => {
+    console.log('Creating new role...\n');
+    console.log('Before creating a new role, please make sure the department that role will belong to exists.if not, please create new department before adding role.')
+    inquirer.prompt([{
+        name: 'id',
+        type: 'input',
+        message: 'What is the id of the new role?'
+    },
+    {
+        name: 'title',
+        type: 'input',
+        message: 'What is the title of the new role?',
+    },
+    {
+        name: 'salary',
+        type: 'input',
+        message: 'What is the anual income of this role?'
+    },
+    {
+        name: 'deptId',
+        type: 'input',
+        message: 'What is the department id of the new role?'
+    },
+    ])
+        .then((answer) => {
+            connection.query(
+                'INSERT INTO role SET ?',
+                {
+                    id: `${answer.id}`,
+                    title: `${answer.title}`,
+                    salary: `${answer.salary}`,
+                    department_id: `${answer.deptId}`
+                },
+                (err, res) => {
+                    if (err) throw err;
+                    console.log(`${res.affectedRows} New role created!\n`);
+                    //goes back to 'home'menu
+                    searchRun();
+                }
+            )
+        })
+};
+
+const addDept = () => {
+    console.log('Creating a new department...\n');
+    inquirer.prompt([{
+        name: 'id',
+        type: 'input',
+        message: 'What is the id of the new department'
+    },
+    {
+        name: 'name',
+        type: 'input',
+        message: 'What is the name of the new department?',
+    },
+   
+    ])
+        .then((answer) => {
+            connection.query(
+                'INSERT INTO department SET ?',
+                {
+                    id: `${answer.id}`,
+                    name: `${answer.name}`,
+                },
+                (err, res) => {
+                    if (err) throw err;
+                    console.log(`${res.affectedRows} New department created, Congratulations on your expansion!!\n`);
+                    //goes back to 'home'menu
+                    searchRun();
+                }
+            )
+        })
+};
+// const updateEmployee = () => {
+//     console.log('Updating employee role...\n');
+//     connection.query(
+//       'UPDATE employee SET ? WHERE ?',
+//       [
+//         {
+//           genre: "super rap",
+//         },
+//         {
+//           title: 'stan',
+//         },
+//       ],
+//       (err, res) => {
+//         if (err) throw err;
+//         console.log(`${res.affectedRows} employee role updated!\n`);
+//         // Call deleteProduct AFTER the UPDATE completes
+//         searchRun();
+//       }
+//     );
+// }
+
