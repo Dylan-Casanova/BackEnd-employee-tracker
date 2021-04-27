@@ -22,22 +22,22 @@ menu options
 
 ![possible options](./assets/number2.png)
 <br>
-view employees option
+"view employees" option
 
 ![employee table](./assets/number3.png)
 <br>
-add employee option selected, it promts user for info
+"add employee" option selected, it prompts user for info
 
 ![add employee](./assets/number4.png)
 <br>
-Exit option selected
+"Exit" option selected
 
 ![Exit option](./assets/number5.png)
 
 ## Demo
-video link
+https://youtu.be/b3Mxo7VFWH8   <---- Video link
 
 ## contant Information
-for any clarification or questions, contact me! email: dyylancasanova17@gmail.com 
+for any clarification or questions, contact me! email: dyylancasanova17@gmail.com <br>
 for pull request:
 GitHub: Dylan-Casanova
