@@ -1,7 +1,9 @@
+--creating data base
 DROP DATABASE IF EXISTS daca_dealershipDB;
 CREATE database daca_dealershipDB;
 
 USE daca_dealershipDB;
+--creating tables
 CREATE TABLE department(
     id INT NOT NULL,
     name VARCHAR(50) NOT NULL,

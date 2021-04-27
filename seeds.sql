@@ -41,7 +41,5 @@ VALUES (3, 'Jenny', 'Valdez',3,1);
 INSERT INTO  employee (id,first_name,last_name,role_id,manager_id)
 VALUES (4, 'Hector', 'Rodriguez',4,1);
 
-INSERT INTO  employee (id,first_name,last_name,role_id,manager_id)
-VALUES (5, 'Walter', 'White',5,1);
 
 

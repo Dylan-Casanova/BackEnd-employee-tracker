@@ -21,6 +21,21 @@ connection.connect((err) => {
     if (err) throw err;
     searchRun();
 });
+
+console.log(`
+██     ██ ███████ ██      ██████  ██████  ███    ███ ███████     ████████  ██████      ███████ ███    ███ ██████  ██      ██████ ██    ██ ███████ ███████     
+██     ██ ██      ██     ██      ██    ██ ████  ████ ██             ██    ██    ██     ██      ████  ████ ██   ██ ██     ██    ██ ██  ██  ██      ██          
+██  █  ██ █████   ██     ██      ██    ██ ██ ████ ██ █████          ██    ██    ██     █████   ██ ████ ██ ██████  ██     ██    ██  ████   █████   █████       
+██ ███ ██ ██      ██     ██      ██    ██ ██  ██  ██ ██             ██    ██    ██     ██      ██  ██  ██ ██      ██     ██    ██   ██    ██      ██          
+ ███ ███  ███████ ███████ ██████  ██████  ██      ██ ███████        ██     ██████      ███████ ██      ██ ██      ███████ ██████    ██    ███████ ███████     
+                                                                                                                                                              
+████████ ██████   █████   ██████ ██   ██ ███████ ██████  ██                                                                                                   
+   ██    ██   ██ ██   ██ ██      ██  ██  ██      ██   ██ ██                                                                                                   
+   ██    ██████  ███████ ██      █████   █████   ██████  ██                                                                                                   
+   ██    ██   ██ ██   ██ ██      ██  ██  ██      ██   ██                                                                                                      
+   ██    ██   ██ ██   ██  ██████ ██   ██ ███████ ██   ██ ██                                                                                                   
+                                                                                                                                                              
+                                                                                                                                                              `);
 //initial promt/ menu options
 const searchRun = () => {
     inquirer
@@ -39,6 +54,7 @@ const searchRun = () => {
                 'Exit',
             ],
         })
+        // gets the answer from promt and runs selected case
         .then((answer) => {
             switch (answer.action) {
                 case 'view employees':
@@ -141,6 +157,7 @@ const addEmployee = () => {
         message: 'What is the manager id of this employees manager?'
     },
     ])
+    //gets input from user and uses it to complete query search
         .then((answer) => {
             connection.query(
                 'INSERT INTO employee SET ?',
@@ -160,7 +177,7 @@ const addEmployee = () => {
             )
         })
 };
-
+//updates employee role
 const addRole = () => {
     console.log('Creating new role...\n');
     console.log('Before creating a new role, please make sure the department that role will belong to exists.if not, please create new department before adding role.')
@@ -185,6 +202,7 @@ const addRole = () => {
         message: 'What is the department id of the new role?'
     },
     ])
+    //gets input from user to add a role
         .then((answer) => {
             connection.query(
                 'INSERT INTO role SET ?',
@@ -203,7 +221,7 @@ const addRole = () => {
             )
         })
 };
-
+//function to add dept.
 const addDept = () => {
     console.log('Creating a new department...\n');
     inquirer.prompt([{
@@ -218,6 +236,7 @@ const addDept = () => {
     },
 
     ])
+    //gets answer from user and uses it to complete query search
         .then((answer) => {
             connection.query(
                 'INSERT INTO department SET ?',
@@ -234,6 +253,7 @@ const addDept = () => {
             )
         })
 };
+//function to update employee
 const updateEmployee = () => {
     console.log('Updating employee role...\n');
     inquirer.prompt([
@@ -248,6 +268,7 @@ const updateEmployee = () => {
             message: 'What is the new role id?'
         },
     ])
+    //gets input from user and uses it to update employee role id
         .then((answer) => {
             connection.query(
                 'UPDATE employee SET ? WHERE ?',
@@ -267,9 +288,22 @@ const updateEmployee = () => {
             )
         });
 }
-
+//end the conection
 const exit = () => {
-    console.log('Thank you for using Employee Tracker, stay safe and see you next time!');
+    console.log(`
+    ████████ ██   ██  █████  ███    ██ ██   ██     ██    ██  ██████  ██    ██                              
+       ██    ██   ██ ██   ██ ████   ██ ██  ██       ██  ██  ██    ██ ██    ██                              
+       ██    ███████ ███████ ██ ██  ██ █████         ████   ██    ██ ██    ██                              
+       ██    ██   ██ ██   ██ ██  ██ ██ ██  ██         ██    ██    ██ ██    ██                              
+       ██    ██   ██ ██   ██ ██   ████ ██   ██        ██     ██████   ██████                               
+                                                                                                           
+    ███████  ██████  ██████      ██    ██  ██████  ██    ██ ██████      ██    ██ ██ ███████ ██ ████████ ██ 
+    ██      ██    ██ ██   ██      ██  ██  ██    ██ ██    ██ ██   ██     ██    ██ ██ ██      ██    ██    ██ 
+    █████   ██    ██ ██████        ████   ██    ██ ██    ██ ██████      ██    ██ ██ ███████ ██    ██    ██ 
+    ██      ██    ██ ██   ██        ██    ██    ██ ██    ██ ██   ██      ██  ██  ██      ██ ██    ██       
+    ██       ██████  ██   ██        ██     ██████   ██████  ██   ██       ████   ██ ███████ ██    ██    ██ 
+                                                                                                           
+                                                                                                          `);
     connection.end();
 }
 
