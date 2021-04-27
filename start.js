@@ -69,6 +69,10 @@ const searchRun = () => {
                     updateEmployee();
                     break;
 
+                case 'Exit':
+                    exit();
+                    break;
+
                 default:
                     console.log(`Invalid action: ${answer.action}`);
                     break;
@@ -109,7 +113,7 @@ const deptSearch = () => {
 //function to add employee to table
 const addEmployee = () => {
     console.log('Making room for new employee...\n');
-    console.log('Before adding a new employee, please make sure that the department and role the new employee will belog to exist.')
+    console.log('Before adding a new employee, please make sure that the department and role the new employee will belong to exist.')
     console.log('If not, please add department and role before adding employee')
     inquirer.prompt([{
         name: 'id',
@@ -212,7 +216,7 @@ const addDept = () => {
         type: 'input',
         message: 'What is the name of the new department?',
     },
-   
+
     ])
         .then((answer) => {
             connection.query(
@@ -230,24 +234,44 @@ const addDept = () => {
             )
         })
 };
-// const updateEmployee = () => {
-//     console.log('Updating employee role...\n');
-//     connection.query(
-//       'UPDATE employee SET ? WHERE ?',
-//       [
-//         {
-//           genre: "super rap",
-//         },
-//         {
-//           title: 'stan',
-//         },
-//       ],
-//       (err, res) => {
-//         if (err) throw err;
-//         console.log(`${res.affectedRows} employee role updated!\n`);
-//         // Call deleteProduct AFTER the UPDATE completes
-//         searchRun();
-//       }
-//     );
-// }
+const updateEmployee = () => {
+    console.log('Updating employee role...\n');
+    inquirer.prompt([
+        {
+            name: 'id',
+            type: 'input',
+            message: 'What is the id of the employee whose role you want to update?'
+        },
+        {
+            name: 'roleId',
+            type: 'input',
+            message: 'What is the new role id?'
+        },
+    ])
+        .then((answer) => {
+            connection.query(
+                'UPDATE employee SET ? WHERE ?',
+                [
+                    {
+                        role_id: `${answer.roleId}`,
+                    },
+                    {
+                        id: `${answer.id}`,
+                    },
+                ],
+                (err, res) => {
+                    if (err) throw err;
+                    console.log(`${res.affectedRows} employee role update!\n`);
+                    searchRun();
+                },
+            )
+        });
+}
+
+const exit = () => {
+    console.log('Thank you for using Employee Tracker, stay safe and see you next time!');
+    connection.end();
+}
+
+
 
