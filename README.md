@@ -6,13 +6,13 @@ The application allows users to add and view employees,roles and departments. It
 its users to update an employee role id.
 
 ## Installation
-Before being able to run the program, please make sure all the dependencies require have been installed. 
+Before being able to run the program, please make sure all the dependencies required have been installed. 
 This can be done by running the following code "npm i "
 
 ## Usage
-Select one of the possible options and answer the promts.
+Select one of the possible options and answer the prompts.
 <br>
-This command starts our application
+The command in the following picture, starts our application
 
 <br>
 
