@@ -108,7 +108,7 @@ const employeeSearch = () => {
 //function to view roles
 const roleSearch = () => {
     console.log('selecting roles...\n');
-    connection.query('SELECT * FROM daca_dealershipDB.role', (err, res) => {
+    connection.query('SELECT * FROM role', (err, res) => {
         if (err) throw err;
         console.table(res);
         // connection.end();

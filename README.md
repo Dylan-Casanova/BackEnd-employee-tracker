@@ -1,5 +1,5 @@
 # unit12-employee-tracker
-
+<a href="https://youtu.be/b3Mxo7VFWH8 "> Deployed app </a> <----- Click here for video demo <br>
 This project was created with the purpose of creating a system that will allow
 business owners to track their employees through a command line application.
 The application allows users to add and view employees,roles and departments. It also allows
@@ -34,8 +34,7 @@ menu options
 
 ![Exit option](./assets/number5.png)
 
-## Demo
-https://youtu.be/b3Mxo7VFWH8   <---- Video link
+
 
 ## contant Information
 for any clarification or questions, contact me! email: dyylancasanova17@gmail.com <br>
